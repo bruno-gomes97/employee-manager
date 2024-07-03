@@ -13,9 +13,11 @@ public class EmployeeDataReader {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
+		// solicita o numero de funcionarios
 		System.out.print("How many employees will be registered? ");
 		int N = sc.nextInt();
 		
+		// criar lista para armazenar obj
 		List<EmployeeRegistry> list = new ArrayList<>();
 		
 		for(int i=0; i<N; i++) {
@@ -38,20 +40,20 @@ public class EmployeeDataReader {
 		System.out.println();
 		
 		System.out.print("Enter the employee id that will have salary increase: ");
-		int idEmployee = sc.nextInt();
-		EmployeeRegistry result = list.stream().filter(x -> x.getId() == idEmployee).findFirst().orElse(null);
-		if(result == null) {
+		int idEmployee = sc.nextInt(); // solicita o id do funcionario
+		EmployeeRegistry result = list.stream().filter(x -> x.getId() == idEmployee).findFirst().orElse(null); // procura o id na lista
+		if(result == null) {  // se nao encontrou, exibir seguinte mensagem
 			System.out.println("This id does not exist!");
-		} else {
+		} else { // se o id existir, entrar com a porcentagem de aumentos
 			System.out.print("Enter the percentage: ");
 			double percentage = sc.nextDouble();
-			result.increaseSalary(percentage);
+			result.increaseSalary(percentage);  // metodo para ganhar aumento
 		}
 		
 		System.out.println();
 		
 		System.out.println("List of Employee:");
-		for(int i=0; i<list.size(); i++) {
+		for(int i=0; i<list.size(); i++) { // exibir lista de funcionarios
 			System.out.println(list.get(i).getId() + ", " + list.get(i).getName() + ", " + list.get(i).getSalary());
 		}
 		
